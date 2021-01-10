@@ -170,7 +170,7 @@ RUN anaconda/bin/conda init && cp /opt/environment/.condarc /root/.condarc
 #
 # config environments:
 #
-# a. X-VectorNet development:
+# a. X-VectorNet development, virtualenv graphnn:
 
 RUN anaconda/bin/conda env create -f /opt/environment/vectornet/gpu.yml
 
@@ -182,10 +182,16 @@ RUN /opt/anaconda/envs/graphnn/bin/pip install pytest-runner && \
     /opt/anaconda/envs/graphnn/bin/pip install --no-index torch-sparse -f https://pytorch-geometric.com/whl/torch-1.7.0+cu110.html && \
     /opt/anaconda/envs/graphnn/bin/pip install --no-index torch-cluster -f https://pytorch-geometric.com/whl/torch-1.7.0+cu110.html && \
     /opt/anaconda/envs/graphnn/bin/pip install --no-index torch-spline-conv -f https://pytorch-geometric.com/whl/torch-1.7.0+cu110.html && \
-    /opt/anaconda/envs/graphnn/bin/pip install torch-geometric
+    /opt/anaconda/envs/graphnn/bin/pip install torch-geometric && \
+    /opt/anaconda/envs/graphnn/bin/pip install l5kit 
 
-# b. reference benchmark system from FAIR:
+# b. reference benchmark system from FAIR, virtualenv object-detection:
 
+RUN anaconda/bin/conda env create -f /opt/environment/detectron2/gpu.yml
+
+# install pre-built detectron2:
+RUN /opt/anaconda/envs/object-detection/bin/pip install cython tqdm && \
+    /opt/anaconda/envs/object-detection/bin/pip install detectron2 -f https://dl.fbaipublicfiles.com/detectron2/wheels/cu110/torch1.7/index.html
 
 # ------ USER XDEV HAS BEEN DEACTIVATED ------
 

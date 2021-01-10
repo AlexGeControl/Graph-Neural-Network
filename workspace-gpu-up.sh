@@ -11,4 +11,4 @@ docker run \
   -p 40080:80 \
   -p 46006:6006 \
   -e VNC_PASSWORD=sensorfusion \
-  --name x-vectornet-workspace-gpu x-vectornet-workspace:bionic-gpu-vnc
+  --name graphnn-workspace-gpu x-vectornet-workspace:bionic-gpu-vnc
