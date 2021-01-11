@@ -149,12 +149,6 @@ You can identify the running workspace by the following commands:
 docker ps -a
 ```
 
-### Health Check
-
-First, open **Chrome** and go to **http://localhost:49001/**(Default account/password is **sensorfusion/sensorfusion**). Make sure all the service components are successfully launched.
-
-<img src="doc/images/web-workspace-portal.png" width="100%" alt="X-VectorNet Web Workspace Portal">
-
 ### Access Web Workspace
 
 Now go to **http://localhost:40080/** to access the web workspace. This is a virtual desktop powered by [noVNC](https://github.com/novnc/noVNC).
@@ -163,5 +157,53 @@ Now go to **http://localhost:40080/** to access the web workspace. This is a vir
 
 ---
 
-## Graph Neural Network Tutorials
+## PyCharm Remote Debug
 
+### Remote Server Config
+
+First, add a remote server configuration as follows:
+
+<img src="doc/images/pycharm--remote-server-config.png" alt="PyCharm Remote Server Configuration" width="100%">
+
+### Remote Python Interpreter
+
+Then, add a remote Python interpreter as follows:
+
+<img src="doc/images/pycharm--remote-python-interpreter.png" alt="PyCharm Remote Python Interpreter" width="100%">
+
+### Run/Debug Configurations
+
+Finally:
+
+* Add **PYTHONPATH** to Run/Debug Configuration
+
+    ```bash
+    # execute this inside Docker web workspace, with target conda env activated:
+    (object-detection) root@4fc082c3a132:~# python
+    Python 3.6.12 |Anaconda, Inc.| (default, Sep  8 2020, 23:10:56) 
+    [GCC 7.3.0] on linux
+    Type "help", "copyright", "credits" or "license" for more information.
+    >>> import detectron2
+    >>> detectron2.__version__
+    '0.3'
+    >>> detectron2.__file__
+    '/opt/anaconda/envs/object-detection/lib/python3.6/site-packages/detectron2/__init__.py'
+    # set PYTHONPATH in Run/Debug Configuration using the value found above:
+    export PYTHONPATH=/opt/anaconda/envs/object-detection/lib/python3.6/site-packages
+    ```
+
+* Map local path to remote path according to volume mount config:
+
+    <img src="doc/images/pycharm--run-configuration.png" alt="PyCharm Run Configuration" width="100%">
+
+### Verification
+
+Verify that everything is there by run a demo detection:
+
+<img src="doc/images/pycharm--verification.png" alt="PyCharm Remote Detectron2" width="100%">
+
+Input                      |Output
+:-------------------------:|:-------------------------:
+![Input](doc/images/demo/input.jpg)  |  ![Output](doc/images/demo/output.jpg)
+
+---

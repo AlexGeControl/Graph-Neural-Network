@@ -14,5 +14,8 @@ if [ -n "$VNC_PASSWORD" ]; then
     export VNC_PASSWORD=
 fi
 
+# enable ssh:
+service ssh start
+
 # launch all:
 exec /usr/bin/tini -- /usr/bin/supervisord -n

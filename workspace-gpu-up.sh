@@ -6,6 +6,8 @@ docker run \
   --privileged \
   -v ${PWD}/workspace:/workspace \
   -v ${PWD}/docker/environment:/opt/environment \
+  -v ${PWD}/docker/image/startup.sh:/startup.sh \
+  -p 40022:22 \
   -p 49001:9001 \
   -p 45901:5901 \
   -p 40080:80 \

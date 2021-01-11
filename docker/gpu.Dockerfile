@@ -4,6 +4,7 @@ FROM nvidia/cuda:11.0-cudnn8-devel-ubuntu18.04
 
 # use root for package installation:
 USER root
+RUN echo 'root:nn' | chpasswd 
 
 # create a non-root development user xdev:
 ARG USER_ID=1000
@@ -129,30 +130,7 @@ RUN chmod u+x ./download-tini.sh && ./download-tini.sh && dpkg -i tini.deb && \
 
 RUN rm -rf /tmp/installers
 
-# ------ PART 6: set up VNC servers ------
-
-COPY image /
-
-WORKDIR /usr/lib/
-
-RUN git clone https://github.com/novnc/noVNC.git -o noVNC
-
-WORKDIR /usr/lib/noVNC/utils
-
-RUN git clone https://github.com/novnc/websockify.git -o websockify
-
-WORKDIR /usr/lib/webportal
-
-# VNC server:
-RUN pip install --upgrade pip && pip install -r requirements.txt
-
-EXPOSE 80 5901 9001
-
-# ------ USER ROOT HAS BEEN DEACTIVATED ------
-
-# ------- USER XDEV HAS BEEN ACTIVATED -------
-
-# ------ PART 7: set up Anaconda environment ------
+# ------ PART 6: set up Anaconda environment ------
 
 # installation path:
 WORKDIR /opt
@@ -170,7 +148,7 @@ RUN anaconda/bin/conda init && cp /opt/environment/.condarc /root/.condarc
 #
 # config environments:
 #
-# a. X-VectorNet development, virtualenv graphnn:
+# a. graph neural network development, virtualenv graphnn:
 
 RUN anaconda/bin/conda env create -f /opt/environment/vectornet/gpu.yml
 
@@ -193,7 +171,29 @@ RUN anaconda/bin/conda env create -f /opt/environment/detectron2/gpu.yml
 RUN /opt/anaconda/envs/object-detection/bin/pip install cython tqdm && \
     /opt/anaconda/envs/object-detection/bin/pip install detectron2 -f https://dl.fbaipublicfiles.com/detectron2/wheels/cu110/torch1.7/index.html
 
-# ------ USER XDEV HAS BEEN DEACTIVATED ------
+#
+# enable SSH connection for PyCharm debugger:
+#
+EXPOSE 22
+
+# ------ PART 7: set up VNC servers ------
+
+COPY image /
+
+WORKDIR /usr/lib/
+
+RUN git clone https://github.com/novnc/noVNC.git -o noVNC
+
+WORKDIR /usr/lib/noVNC/utils
+
+RUN git clone https://github.com/novnc/websockify.git -o websockify
+
+WORKDIR /usr/lib/webportal
+
+# VNC server:
+RUN pip install --upgrade pip && pip install -r requirements.txt
+
+EXPOSE 80 5901 9001
 
 # ------------------ DONE -----------------------
 
