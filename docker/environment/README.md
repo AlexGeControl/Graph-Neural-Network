@@ -6,5 +6,5 @@ This folder contains:
 
 * virtualenv defitions for 
 
-    * **x-vectornet development workspace**: vectornet
-    * **reference benchmark system implementation from FAIR**: detectron2
+    * **graph**: graph neural network learning environment
+    * **detectron2**: object detection learning environment
