@@ -8,6 +8,14 @@ The virtual environment used is defined by [this Conda environment file](docker/
 
 ---
 
+## Up & Running
+
+```bash
+jupyter lab --ip=0.0.0.0 --port=6006 --no-browser --allow-root
+```
+
+---
+
 ## Node2Vec Second-Order Walk
 
 ### Python Native Implementation

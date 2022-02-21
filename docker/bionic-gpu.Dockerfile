@@ -151,8 +151,12 @@ RUN anaconda/bin/conda init && cp /opt/environment/.condarc /root/.condarc
 #
 # config environments:
 #
-# here the installation of PyTorch Geometric is separated from conda env due to potential incompatibility:
+# set CUDA_HOME:
 ENV CUDA_HOME="/usr/local/cuda-11.3.1"
+# graph neural networks:
+RUN anaconda/bin/conda env create -f /opt/environment/graph/graph.yaml
+# done:
+RUN anaconda/bin/conda env list
 
 #
 # enable SSH connection for PyCharm debugger:
