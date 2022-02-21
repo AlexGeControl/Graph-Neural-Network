@@ -1,6 +1,6 @@
-# Development Workspace for Graph Neural Network Learning
+# Development Workspace for PyTorch Deep Learning Prototyping
 
-Containerized workspace for **Graph Neural Network** prototype development.
+Containerized workspace for **PyTorch Deep Learning Prototyping** development.
 
 ---
 
@@ -34,13 +34,11 @@ Please follow [the official guide](https://docs.docker.com/compose/install/) to 
 
 For prototyping development the following libraries for **Graph Neural Network development** are used:
 
-* CUDA 11.0, powered by NVIDIA-driver-R450
-* PyTorch 1.7.0
-* PyTorch Geometric **To-Be-Added**
+* CUDA 11.3, powered by NVIDIA-driver-R470
 
 **Note** For prototyping you just need a CUDA compatible card. For training on large-scale dataset cloud utilities should be used.
 
-#### NVIDIA Driver, R450
+#### NVIDIA Driver, R470
 
 **Note** make sure you have installed the exact version of NVIDIA driver on your machine. Otherwise the driver could be imcompatible with GPU container.
 
@@ -101,18 +99,18 @@ Use the following command to ensure you have all the dependencies ready:
 
 ```bash
 # run nvidia-smi inside base gpu docker:
-docker run --rm --gpus all nvidia/cuda:11.0-cudnn8-devel-ubuntu18.04 nvidia-smi
+docker run --rm --gpus all nvidia/cuda:11.3-cudnn8-devel-ubuntu18.04 nvidia-smi
 # expected output:
-Fri Jan  8 10:32:06 2021       
+Mon Feb 21 16:04:39 2022       
 +-----------------------------------------------------------------------------+
-| NVIDIA-SMI 450.80.02    Driver Version: 450.80.02    CUDA Version: 11.0     |
+| NVIDIA-SMI 470.103.01   Driver Version: 470.103.01   CUDA Version: 11.4     |
 |-------------------------------+----------------------+----------------------+
 | GPU  Name        Persistence-M| Bus-Id        Disp.A | Volatile Uncorr. ECC |
 | Fan  Temp  Perf  Pwr:Usage/Cap|         Memory-Usage | GPU-Util  Compute M. |
 |                               |                      |               MIG M. |
 |===============================+======================+======================|
-|   0  Quadro P620         Off  | 00000000:01:00.0  On |                  N/A |
-| 34%   34C    P0    N/A /  N/A |    687MiB /  1997MiB |      0%      Default |
+|   0  Quadro RTX 5000     Off  | 00000000:01:00.0 Off |                  N/A |
+| N/A   58C    P8     2W /  N/A |    550MiB / 16125MiB |      6%      Default |
 |                               |                      |                  N/A |
 +-------------------------------+----------------------+----------------------+
                                                                                
@@ -121,14 +119,21 @@ Fri Jan  8 10:32:06 2021
 |  GPU   GI   CI        PID   Type   Process name                  GPU Memory |
 |        ID   ID                                                   Usage      |
 |=============================================================================|
+|    0   N/A  N/A      2329      G   /usr/lib/xorg/Xorg                 49MiB |
+|    0   N/A  N/A      2882      G   /usr/bin/gnome-shell               85MiB |
+|    0   N/A  N/A      3813      G   /usr/lib/xorg/Xorg                202MiB |
+|    0   N/A  N/A      3992      G   /usr/bin/gnome-shell               54MiB |
+|    0   N/A  N/A      5596      G   ...AAAAAAAAA= --shared-files       88MiB |
+|    0   N/A  N/A     14806      G   ...AAAAAAAAA= --shared-files       62MiB |
 +-----------------------------------------------------------------------------+
+
 ```
 
 ---
 
 ## Up & Running
 
-Now you are ready to explore the web workspace for X-VectorNet prototype development.
+Now you are ready to explore the web workspace for PyTorch deep learning prototyping development.
 
 ### Launch Environment
 
@@ -137,10 +142,8 @@ Execute the commands below at the root of repo to launch development environment
 **Note** bash script is still used due to Docker-Compose's limited support of NVIDIA-container-toolkit.
 
 ```bash
-# launch CPU workspace:
-docker-compose up workspace-bionic-cpu-vnc
 # launch GPU workspace:
-./workspace-gpu-up.sh
+bash ./workspace-bionic-gpu-vnc.sh
 ```
 
 You can identify the running workspace by the following commands:
@@ -153,7 +156,7 @@ docker ps -a
 
 Now go to **http://localhost:40080/** to access the web workspace. This is a virtual desktop powered by [noVNC](https://github.com/novnc/noVNC).
 
-<img src="doc/images/web-workspace-portal.png" width="100%" alt="X-VectorNet Web Workspace Portal">
+<img src="doc/images/web-workspace-portal.png" width="100%" alt="PyTorch Deep Learning Prototyping Workspace Portal">
 
 ---
 
