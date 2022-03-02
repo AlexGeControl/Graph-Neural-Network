@@ -2,8 +2,9 @@ name: graph
 channels:
   - pyg
   - pytorch
-  - anaconda
+  - dglteam
   - conda-forge
+  - anaconda
   - defaults
 dependencies:
   - _libgcc_mutex=0.1=main
@@ -24,7 +25,7 @@ dependencies:
   - brotli=1.0.9=he6710b0_2
   - brotlipy=0.7.0=py37h5e8e339_1001
   - bzip2=1.0.8=h7b6447c_0
-  - ca-certificates=2021.10.26=h06a4308_2
+  - ca-certificates=2022.2.1=h06a4308_0
   - certifi=2021.10.8=py37h06a4308_2
   - cffi=1.15.0=py37hd667e15_1
   - charset-normalizer=2.0.12=pyhd8ed1ab_0
@@ -37,6 +38,7 @@ dependencies:
   - dbus=1.13.18=hb2f20db_0
   - decorator=4.4.2=py_0
   - defusedxml=0.7.1=pyhd8ed1ab_0
+  - dgl-cuda11.3=0.8.0=py37_0
   - entrypoints=0.4=pyhd8ed1ab_0
   - expat=2.4.4=h295c915_0
   - ffmpeg=4.3=hf484d3e_0
