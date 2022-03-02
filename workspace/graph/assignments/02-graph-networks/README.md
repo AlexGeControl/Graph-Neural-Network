@@ -160,3 +160,46 @@ Evaluation results: 	loss= 0.7064 	accuracy= 0.7990
 
 <img src="doc/images/Cora-GAT.png" width="100%" alt="GAT Embedding Visualization">
 
+---
+
+## GraphSAGE Implementation
+
+### Implementation
+
+#### Forward Propagation for Inference
+
+```Python
+    def inference(self, g, features):
+        """ Forward propagation for inference
+        """
+        h = self.convs[0](g, features)
+        h = F.dropout(h, p=self.droput, training=self.training)
+        h = self.convs[1](g, h)
+        
+        return h.log_softmax(dim=-1) 
+```
+
+#### Result
+
+```bash
+# training log:
+Training on Cora...
+    Epoch: 0 training loss: 3.9042117595672607
+    Epoch: 10 training loss: 2.905731201171875
+    Epoch: 20 training loss: 1.7415410876274109
+    Epoch: 30 training loss: 1.0911703705787659
+    Epoch: 40 training loss: 0.7680374085903168
+    Epoch: 50 training loss: 0.5393471866846085
+    Epoch: 60 training loss: 0.5556989908218384
+    Epoch: 70 training loss: 0.37888655066490173
+    Epoch: 80 training loss: 0.2671933099627495
+    Epoch: 90 training loss: 0.2514564022421837
+Done!
+# evaluation log:
+Evaluation results: 	loss= 0.7384 	accuracy= 0.8020
+```
+
+<img src="doc/images/Cora-GraphSAGE.png" width="100%" alt="GraphSAGE Embedding Visualization">
+
+
+
