@@ -199,4 +199,14 @@ dependencies:
   - zipp=3.7.0=pyhd8ed1ab_1
   - zlib=1.2.11=h7f8727e_4
   - zstd=1.4.9=haebb681_0
+  - pip:
+    - bz2file==0.98
+    - deeprobust==0.2.4
+    - imageio==2.16.1
+    - protobuf==3.19.4
+    - pywavelets==1.2.0
+    - scikit-image==0.19.2
+    - tensorboardx==2.5
+    - texttable==1.6.4
+    - tifffile==2021.11.2
 prefix: /opt/anaconda/envs/graph
