@@ -1,6 +1,6 @@
-# Development Workspace for PyTorch Deep Learning Prototyping
+# Development Workspace for General PyTorch Deep Learning Prototyping
 
-Containerized workspace for **PyTorch Deep Learning Prototyping** development.
+Containerized workspace for **General PyTorch Deep Learning Prototyping** development.
 
 ---
 
@@ -28,7 +28,7 @@ In order to run Docker commands without sudo:
 
 Please follow [the official guide](https://docs.docker.com/compose/install/) to install **Docker-Compose**, Docker orchestrator on local machine, on your local machine.
 
-### (Optional) NVIDIA Driver & CUDA for GPU Workspace
+### NVIDIA Driver for GPU Workspace
 
 #### Introduction
 
