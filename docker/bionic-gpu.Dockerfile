@@ -153,8 +153,12 @@ RUN anaconda/bin/conda init && cp /opt/environment/.condarc /root/.condarc
 #
 # set CUDA_HOME:
 ENV CUDA_HOME="/usr/local/cuda-11.3.1"
-# graph neural networks:
+
+# for graph neural networks:
 RUN anaconda/bin/conda env create -f /opt/environment/graph/graph.yaml
+# for reinforcement learning:
+RUN anaconda/bin/conda env create -f /opt/environment/reinforcement/reinforcement.yaml
+
 # done:
 RUN anaconda/bin/conda env list
 

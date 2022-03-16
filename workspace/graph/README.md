@@ -1,3 +1,3 @@
-# Graph Workspace
+# Graph Neural Networks Workspace
 
 ---
